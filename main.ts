@@ -28,6 +28,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
     music.baDing.play()
 })
+info.onCountdownEnd(function () {
+    if (info.score() >= 20) {
+        game.over(true)
+    }
+    game.over(false)
+})
 let ATACARRRA_DESTRUIR_SU_NAVE: Sprite = null
 let APUNTENPUSHBUEN_DISPARO: Sprite = null
 let KARATE_ESPECIAL_DE_COLORINES: Sprite = null
@@ -53,6 +59,7 @@ KARATE_ESPECIAL_DE_COLORINES.setFlag(SpriteFlag.StayInScreen, true)
 controller.moveSprite(KARATE_ESPECIAL_DE_COLORINES, 200, 200)
 info.setLife(4)
 info.setScore(0)
+info.startCountdown(30)
 game.onUpdateInterval(1000, function () {
     ATACARRRA_DESTRUIR_SU_NAVE = sprites.create(img`
 a 5 5 5 5 5 5 5 5 5 5 5 5 5 5 a 
